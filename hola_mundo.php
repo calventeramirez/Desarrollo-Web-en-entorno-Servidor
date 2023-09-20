@@ -148,6 +148,63 @@
             default:
                 echo "Hoy $diaEspañol no hay clase de Desarrollo Web Servidor";
         }
+        echo  "<br><br>";
+        //Estructura MATCH
+        $d = date("l");
+        $de = match ($d) {
+             "Monday" => "Lunes",
+             "Tuesday" => "Martes",
+             "Wednesday" => "Miercoles",
+             "Thursday" => "Jueves",
+             "Friday" => "Viernes",
+             "Saturday" => "Sabado",
+             "Sunday" => "Domingo",
+        };
+        echo $de;
+        echo  "<br><br>";
+    ?>
+
+    <?php
+        $i = 1;
+        while($i <= 10){
+            echo $i;
+            $i++;
+        }
+        echo  "<br>";
+
+        $i = 1;
+        do {
+            echo $i."<br>";
+            $i++;
+        }while($i <= 10);
+        echo  "<br><br>";
+
+        for($i = 1; $i <= 10; $i++){
+            echo $i;
+        }
+        echo  "<br>";
+
+        for ($i=1;;$i++){
+            if($i > 10){
+                break;
+            }
+            echo $i;
+        }
+        echo  "<br>";
+        //Divisible por 2 o 3
+        for($i = 1; $i <= 50; $i++){
+            if($i % 2 == 0 || $i % 3 == 0){
+                echo $i;
+            }
+        }
+        echo  "<br>";
+        //Divisibles por 2 o 3 y no divisible por 6
+        for($i = 1; $i <= 50; $i++){
+            if(($i % 2 == 0 || $i % 3 == 0) && !($i % 6 == 0)){
+                echo $i;
+            }
+        }
+        echo  "<br>";
     ?>
 </body>
 </html>

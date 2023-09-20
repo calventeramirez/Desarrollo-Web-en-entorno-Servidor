@@ -48,6 +48,25 @@
             case 12:
                 echo "$day de Diciembre";
         }
+
+        echo "<br><br>";
+        echo "Otra manera: ";
+        $mes = date("F");
+        $m = match ($mes) {
+             "January"=> "Enero",
+             "February"=> "Febrero",
+             "March" => "Marzo",
+             "April" => "Abril",
+             "May" => "Mayo",
+             "June" => "Junio",
+             "July" => "Julio",
+             "August" => "Agosto",
+             "September" => "Septiembre",
+             "October" => "Octubre",
+             "November" => "Noviembre",
+             "December" => "Diciembre",
+        };
+        echo "$day de $m";
     ?>
 </body>
 </html>
