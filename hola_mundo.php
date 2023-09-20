@@ -95,6 +95,59 @@
             echo "El numero $valor tiene tres digitos";
         }
         echo  "<br>";
+
+        $x = 5;
+        $y = 10;
+        if($x > $y):
+            echo $x." es mayor que ".$y;
+        elseif($x == $y):
+            echo $x." igual ".$y;
+        else:
+            echo $x." no es ni mayor ni igual a ".$y;
+        endif;
+        echo  "<br>";
+
+        $n = rand(1,3);
+        switch($n){
+            case 1:
+                echo "$n es igual a 1";
+                break;
+            case 2:
+                echo "$n es igual a 2";
+                break;
+            default:
+                echo "$n es igual a 3";
+                break;
+        }
+        echo  "<br>";
+
+        $dia = date("l");
+        
+        if($dia == "Monday"){
+            $diaEspañol = "Lunes";
+        }elseif($dia == "Tuesday"){
+            $diaEspañol = "Martes";
+        }elseif($dia == "Wednesday"){
+            $diaEspañol = "Miercoles";
+        }elseif($diaEspañol == "Thrusday"){
+            $diaEspañol = "Jueves";
+        } elseif($diaEspañol == "Friday"){
+            $diaEspañol = "Viernes";
+        }elseif($diaEspañol == "Saturday"){
+            $diaEspañol = "Sabado";
+        }else{
+            $diaEspañol = "Domingo";
+        }
+
+        switch($dia){
+            case "Monday":
+            case "Wednesday":
+            case "Friday":
+                echo "Hoy $diaEspañol hay clase de Desarrollo Web Servidor";
+                break;
+            default:
+                echo "Hoy $diaEspañol no hay clase de Desarrollo Web Servidor";
+        }
     ?>
 </body>
 </html>
