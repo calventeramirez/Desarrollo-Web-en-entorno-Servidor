@@ -122,7 +122,7 @@
         echo  "<br>";
 
         $dia = date("l");
-        
+        $diaEspañol = "";
         if($dia == "Monday"){
             $diaEspañol = "Lunes";
         }elseif($dia == "Tuesday"){
@@ -205,6 +205,54 @@
             }
         }
         echo  "<br>";
+
+        //Sacar la suma de pares del 0 al 20
+        
+        $pares = 0;
+        for($i = 1; $i < 21; $i++){
+            if($i % 2 == 0){
+                $pares += $i;
+            }
+        }
+        echo "La suma de los numeros pares es: $pares";
+        echo "<br><br>";
+        //Sacar los numeros primos de 1 a 50
+        echo "<ul>";
+        for($i = 2; $i < 51; $i++){
+            $primo = true; 
+            $contador = 2;
+            while($contador <= $i/2 && $primo){
+                if($i % $contador == 0){
+                    $primo = false;
+                }
+                $contador ++;
+            }
+            if($primo){
+                echo "<li>$i</li>";
+            }
+        }
+        echo "</ul>";
+        echo "<br><br>";
+
+        //Sacar los primeros 50 numeros primos
+        $cont = 1;
+        $i = 2;
+        while($cont < 51){
+            $primo = true;
+            $contador = 2;
+            while($contador <= $i/2 && $primo){
+                if($i % $contador == 0){
+                    $primo = false;
+                }
+                $contador ++;
+            }
+            if($primo){
+                echo "$i ";
+                $cont++;
+            }
+            $i++;
+            
+        }
     ?>
 </body>
 </html>
