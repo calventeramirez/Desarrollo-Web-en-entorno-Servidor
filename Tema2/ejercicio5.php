@@ -58,3 +58,13 @@
     </table>
 </body>
 </html>
+<!--
+    Otra manera de las calificaciones
+    $calificacion = match(true){
+        $nota >= 0 && $nota < 5 => "Susp",
+        $nota >= 5 && $nota < 7 => "Apr",
+        $nota >=7 && $nota < 9 => "Not",
+        $nota >= 9 && nota < 11 => "Sobr",
+        default => "Error"
+    };
+-->

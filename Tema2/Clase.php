@@ -76,7 +76,7 @@
             array("Ned", "Stark"),
             array("Daenerys", "Targaryen"),
             array("Tyrion", "Lannister"),
-            array("Arya", "Stark");
+            array("Arya", "Stark")
         );
 
         //para ordenar usar array_multisort(Primer campo, SORT_ASC/SORT_DESC, Segundo campo, SORT_ASC/SORT_DESC, Array)
