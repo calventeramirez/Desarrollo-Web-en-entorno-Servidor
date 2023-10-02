@@ -26,18 +26,25 @@
     <table>
         <thead>
             <tr>
-                <th colspan="10">Contenido</th>
+                <th rowspan="2">Contenido</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                foreach($arrayMultidimensional as $fila){
+                
+                for($i = 0; $i < 10; $i++){
+                    echo "<tr>";
+                    echo "<td>$array1[$i]</td><td>$array2[$i]</td>";
+                    echo "</tr>";
+                }
+                
+                /*foreach($arrayMultidimensional as $fila){
                     echo "<tr>";
                     foreach($fila as $numeros){
                         echo "<td>$numeros</td>";
                     }
                     echo "</tr>";                    
-                }
+                }*/
             ?>
         </tbody>
     </table>
