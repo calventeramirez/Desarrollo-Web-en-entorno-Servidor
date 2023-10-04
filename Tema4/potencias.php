@@ -18,10 +18,6 @@
                 return 0;
             }
         }
-        echo "<h3>" . potencia(2, 1) . "</h3>";
-        echo "<h3>" . potencia(2, 2) . "</h3>";
-        echo "<h3>" . potencia(4, 5) . "</h3>";
-        echo "<h3>" . potencia(3, 3) . "</h3>";
     ?>
 </body>
 </html>
