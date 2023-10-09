@@ -2,7 +2,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 50%;
-    caption-side: bottom;
+    caption-side: bottom; 
   }
   
   th, td {
@@ -13,4 +13,3 @@ table {
   
   tr:nth-child(even) {background-color: coral;}
 
-  

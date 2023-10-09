@@ -15,7 +15,7 @@
             ["Arroz", 2, 5]
         ];
     ?>
-    <div>
+    <div class ="container">
         <h1>Insertar Producto</h1>
         <form action = "" method = "POST">
             <fieldset>
