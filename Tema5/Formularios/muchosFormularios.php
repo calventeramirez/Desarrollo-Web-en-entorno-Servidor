@@ -102,7 +102,7 @@
                     $numero = (int) $_POST["numero"];
                     $salida = primoHasta($numero);
                     echo "<h4>Los numeros primos hasta el $numero son: ";
-                    for($i = 0; $i < count($salida); $i++){
+                    for ($i = 0; $i < count($salida); $i++) {
                         echo "$salida[$i] ";
                     }
                     echo "</h4>";
