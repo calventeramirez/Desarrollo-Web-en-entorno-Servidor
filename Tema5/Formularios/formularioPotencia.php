@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario para la potencia</title>
-    <?php require '../Tema4/potencias.php'; ?> <!--Importamos el codigo de php de otro lado-->
+    <?php require '../../Tema4/potencias.php'; ?> <!--Importamos el codigo de php de otro lado-->
 </head>
 <body>
     <form action="" method="post">
