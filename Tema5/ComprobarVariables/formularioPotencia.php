@@ -19,7 +19,7 @@
             if (strlen($temp_base) > 0) {
                 //Se ha introducido la base
                 //Comprobamos si se ha introducido un numero
-                if (is_numeric($temp_base)) {
+                if (filter_var($temp_base, FILTER_VALIDATE_INT)) {
                     //El numero introducido es un numero
                     //Comprobamos si se ha introducimos un numero correcto
                     $temp_base = (int) $temp_base;
@@ -41,7 +41,7 @@
             if (strlen($temp_exponente) > 0) {
                 //Se ha introducido la exponente
                 //Comprobamos si se ha introducido un numero
-                if (is_numeric($temp_exponente)) {
+                if (filter_var($temp_exponente, FILTER_VALIDATE_INT)) {
                     //El numero introducido es un numero
                     //Comprobamos si se ha introducimos un numero correcto
                     $temp_exponente = (int) $temp_exponente;
