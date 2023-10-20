@@ -21,11 +21,13 @@
         $temp_edad = depurar($_POST["edad"]);
         if (isset($_POST["nombre"])) {
             $temp_nombre = depurar($_POST["nombre"]);
+            $temp_nombre = preg_replace("/[ ]{2,}/", "", $temp_nombre); //Para eliminar los espacios de demas
         } else {
             $temp_nombre = "";
         }
         if (isset($_POST["apellidos"])) {
             $temp_apellidos = depurar($_POST["apellidos"]);
+            $temp_apellidos = preg_replace("/[ ]{2,}/", "", $temp_apellidos);
         } else {
             $temp_apellidos = "";
         }
@@ -74,30 +76,72 @@
         if (!strlen($temp_nombre) > 0) {
             $err_nombre = "El nombre es obligatorio";
         } else {
-            $patron ="/^[a-zA-Z][a-zA-Z ]{1,29}$/";
-            if (!preg_match($patron, $temp_nombre)) {
-                $err_nombre = "El nombre debe estar entre 2 y 30 caracteres";
-            } else {
-                $nombre = ucwords(strtolower($temp_nombre));
-                echo $nombre;
+            if(strlen($temp_nombre) > 30 || strlen($temp_nombre) < 2) {
+                $err_nombre = "No puede contener mas de 30 caracteres o menos de 2";
+            }else{
+                $patron ="/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/";
+                if (!preg_match($patron, $temp_nombre)) {
+                    $err_nombre = "El nombre debe estar entre 2 y 30 caracteres";
+                } else {
+                    if(strlen($temp_nombre) > 30){
+                        $err_nombre = "No puede contener mas de 30 caracteres";
+                    }else{
+                        $nombre = ucwords(strtolower($temp_nombre));
+                        echo $nombre;
+                    } 
+                }
             }
         }
 
         //Validacion y patron de apellidos
         if (!strlen($temp_apellidos) > 0) {
-            $err_apellidos = "Los apellidos son obligatorios";
+            $err_apellidos = "El apellido es obligatorio";
         } else {
-            $patron = "/^[a-zA-Z][a-zA-Z ]{1,29}$/";
-            if (!preg_match($patron, $temp_apellidos)) {
-                $err_apellidos = "Los apellidos debe estar entre 2 y 30 caracteres";
-            } else {
-                $apellidos = ucwords(strtolower($temp_apellidos));
-                echo $apellidos;
+            if(strlen($temp_apellidos) > 30 || strlen($temp_apellidos) < 2) {
+                $err_nombre = "No puede contener mas de 30 caracteres o menos de 2";
+            }else{
+                $patron ="/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/";
+                if (!preg_match($patron, $temp_apellidos)) {
+                    $err_apellidos = "Los apellidos deben estar entre 2 y 30 caracteres";
+                } else {
+                    if(strlen($temp_apellidos) > 30){
+                        $err_nombre = "No puede contener mas de 30 caracteres";
+                    }else{
+                        $apellidos = ucwords(strtolower($temp_apellidos));
+                        echo $apellidos;
+                    } 
+                }
             }
         }
 
         //Validacion y patron de fechas
-
+        if (strlen($temp_fechaNacimiento) == 0){
+            $err_fechaNacimiento = "La fecha de nacimiento es obligatoria";
+        }else{
+            $fecha_actual = date("Y-m-d"); //cojo la fecha actual
+            list($anyo_actual, $mes_actual, $dia_actual) = explode("-", $fecha_actual);
+            list($anyo, $mes, $dia) = explode("-", $temp_fechaNacimiento);
+            if($anyo_actual-$anyo > 18){
+                //es mayor de edad
+                echo $temp_fechaNacimiento;
+            }else if($anyo_actual - $anyo < 18){
+                $err_fechaNacimiento = "No puede ser menor de edad";
+            }else{
+                if($mes_actual - $mes > 0){
+                    //mayor de edad
+                    echo $temp_fechaNacimiento;
+                }else if($mes_actual - $mes < 0){
+                    $err_fechaNacimiento = "No puedes ser menor de edad";
+                }else{
+                    if($dia_actual - $dia >= 0){
+                        //exito
+                        echo $temp_fechaNacimiento;
+                    }else{
+                        $err_fechaNacimiento = "No puedes ser menor de edad";
+                    }
+                }
+            }
+        }
 
     }
     ?>
@@ -136,7 +180,9 @@
                 <div class="mb-3">
                     <label class="form-label">Fecha de Nacimiento: </label>
                     <input type="date" name="fechaNacimiento" class="form-control">
-
+                    <?php if (isset($err_fechaNacimiento)) {
+                        echo $err_fechaNacimiento;
+                    } ?>
                 </div>
                 <input type="submit" value="Registrarse" class="btn btn-primary btn-sm">
             </fieldset>
