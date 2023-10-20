@@ -24,7 +24,7 @@
                 if(!strlen($temp_precioNeto) > 0){
                     $err_precioNeto = "No se ha introducido el precio en neto";
                 }else{
-                   if(!filter_var($temp_precioNeto, FILTER_VALIDATE_FLOAT)){
+                   if((filter_var($temp_precioNeto, FILTER_VALIDATE_FLOAT)===FALSE)){
                         $err_precioNeto = "El precio debe ser un número";
                    }else{
                         $temp_precioNeto = (float) $temp_precioNeto;
@@ -86,7 +86,7 @@
                     if(!strlen($temp_salario) > 0){
                         $err_salario = "Error debes meter un numero";
                     }else{
-                        if(!filter_var($temp_salario, FILTER_VALIDATE_FLOAT)){
+                        if((filter_var($temp_salario, FILTER_VALIDATE_FLOAT) === FALSE)){
                             $err_salario = "Error el precio debe ser numerico";
                         }else{
                             $temp_salario = (float) $temp_salario;
