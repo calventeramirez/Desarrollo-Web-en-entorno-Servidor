@@ -46,29 +46,6 @@
                 $err_usario = "El usuario debe tener entre 4 y 8 caracteres y contener solamente letras o numeros";
             } else {
                 $usuario = $temp_usuario;
-                echo $usuario;
-            }
-        }
-
-        //Validación y patrón de la edad
-        if (!strlen($temp_edad) > 0) {
-            $err_edad = "La edad del usuario es obligatorio";
-        } else {
-            $patron = "/^[0-9]{1,3}$/";
-            if (!preg_match($patron, $temp_edad)) {
-                $err_edad = "La edad debe ser entre un digito y tres digitos";
-            } else {
-                if (!filter_var($temp_edad, FILTER_VALIDATE_INT)) {
-                    $err_edad = "La edad debe ser un numero entero";
-                } else {
-                    $temp_edad = (int) $temp_edad;
-                    if ($temp_edad < 18) {
-                        $err_edad = "Error. La edad debe ser mayor que 18 años";
-                    } else {
-                        $edad = $temp_edad;
-                        echo $edad;
-                    }
-                }
             }
         }
 
@@ -87,7 +64,6 @@
                         $err_nombre = "No puede contener mas de 30 caracteres";
                     }else{
                         $nombre = ucwords(strtolower($temp_nombre));
-                        echo $nombre;
                     } 
                 }
             }
@@ -108,7 +84,6 @@
                         $err_nombre = "No puede contener mas de 30 caracteres";
                     }else{
                         $apellidos = ucwords(strtolower($temp_apellidos));
-                        echo $apellidos;
                     } 
                 }
             }
@@ -123,19 +98,19 @@
             list($anyo, $mes, $dia) = explode("-", $temp_fechaNacimiento);
             if($anyo_actual-$anyo > 18){
                 //es mayor de edad
-                echo $temp_fechaNacimiento;
+                $fecha_nacimiento = $temp_fechaNacimiento;
             }else if($anyo_actual - $anyo < 18){
                 $err_fechaNacimiento = "No puede ser menor de edad";
             }else{
                 if($mes_actual - $mes > 0){
                     //mayor de edad
-                    echo $temp_fechaNacimiento;
+                    $fecha_nacimiento = $temp_fechaNacimiento;
                 }else if($mes_actual - $mes < 0){
                     $err_fechaNacimiento = "No puedes ser menor de edad";
                 }else{
                     if($dia_actual - $dia >= 0){
                         //exito
-                        echo $temp_fechaNacimiento;
+                        $fecha_nacimiento = $temp_fechaNacimiento;
                     }else{
                         $err_fechaNacimiento = "No puedes ser menor de edad";
                     }
@@ -156,13 +131,7 @@
                         echo $err_usario;
                     } ?>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Edad: </label>
-                    <input type="text" name="edad" class="form-control">
-                    <?php if (isset($err_edad)) {
-                        echo $err_edad;
-                    } ?>
-                </div>
+    
                 <div class="mb-3">
                     <label class="form-label">Nombre: </label>
                     <input type="text" name="nombre" class="form-control">
@@ -187,6 +156,14 @@
                 <input type="submit" value="Registrarse" class="btn btn-primary btn-sm">
             </fieldset>
         </form>
+        <?php
+            if(isset($usuario) && isset($nombre) && isset($apellidos) && isset($fecha_nacimiento)){
+                echo "<h3>Usuario: $usuario</h3>";
+                echo "<h3>Nombre: $nombre</h3>";
+                echo "<h3>Apellidos: $apellidos</h3>";
+                echo "<h3>Fecha de nacimiento: $fecha_nacimiento</h3>";
+            }
+        ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
