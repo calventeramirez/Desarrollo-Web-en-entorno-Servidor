@@ -18,7 +18,7 @@
         } else {
             $temp_usuario = "";
         }
-        $temp_edad = depurar($_POST["edad"]);
+
         if (isset($_POST["nombre"])) {
             $temp_nombre = depurar($_POST["nombre"]);
             $temp_nombre = preg_replace("/[ ]{2,}/", "", $temp_nombre); //Para eliminar los espacios de demas
