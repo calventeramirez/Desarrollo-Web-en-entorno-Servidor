@@ -13,68 +13,85 @@
 
 <body>
     <?php
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            if(isset($_POST["idPeliculas"])){
-                $temp_id = depurar($_POST["idPeliculas"]);
-            }else{
-                $temp_id = "";
-            }
-            if(isset($_POST["titulo"])){
-                $temp_titulo = depurar($_POST["titulo"]);
-            }else{
-                $temp_titulo = "";
-            }
-            if(isset($_POST["edadRecomendada"])){
-                $temp_edadRecomendada = depurar($_POST["edadRecomendada"]);
-            }else{
-                $temp_edadRecomendada = "";
-            }
-            if(isset($_POST["fechaEstreno"])){
-                $temp_fechaEstreno = depurar($_POST["fechaEstreno"]);
-            }else{
-                $temp_fechaEstreno = "";
-            }
-
-            //Validación del id
-            if(strlen($temp_id) == 0){
-                $err_id = "Es obligatoria la ID de la pelicula";
-            }else{
-                if($temp_id > 2000000 && $temp_id < 0){
-                    $err_id = "La ide debe ser mayor que 0 y menor de 2000000";
-                }else{
-                    $temp_id = $idPeliculas;
-                }
-            }
-
-            //Validacion del titulo
-            if (!strlen($temp_titulo) > 0) {
-                $err_titulo= "El titulo es obligatorio";
-            } else {
-                if(strlen($temp_titulo) > 80 || strlen($temp_titulo) < 2) {
-                    $err_titulo = "No puede contener mas de 30 caracteres o menos de 2";
-                }else{
-                    $patron ="/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/";
-                    if (!preg_match($patron, $temp_titulo)) {
-                        $err_titulo = "El nombre debe estar entre 2 y 80 caracteres";
-                    } else {
-                        if(strlen($temp_titulo) > 80){
-                            $err_titulo = "No puede contener mas de 80 caracteres";
-                        }else{
-                            $titulo = ucwords(strtolower($temp_titulo));
-                        } 
-                    }
-                }
-            }
-
-            //Validacion edad
-
-            //Validacion Fecha
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["idPeliculas"])) {
+            $temp_id = depurar($_POST["idPeliculas"]);
+        } else {
+            $temp_id = "";
         }
+        if (isset($_POST["titulo"])) {
+            $temp_titulo = depurar($_POST["titulo"]);
+        } else {
+            $temp_titulo = "";
+        }
+        if (isset($_POST["edadRecomenda"])) {
+            $temp_edadRecomendada = depurar($_POST["edadRecomenda"]);
+        } else {
+            $temp_edadRecomendada = "";
+        }
+        if (isset($_POST["fechaEstreno"])) {
+            $temp_fechaEstreno = depurar($_POST["fechaEstreno"]);
+        } else {
+            $temp_fechaEstreno = "";
+        }
+
+        //Validación del id
+        if (strlen($temp_id) == 0) {
+            $err_id = "Es obligatoria la ID de la pelicula";
+        } else {
+            if(filter_var($temp_id, FILTER_VALIDATE_INT) === false) {
+                $err_id = "Introduce un numero";
+            }else{
+                if(strlen($temp_id) > 8){
+                    $err_id = "No puede tener mas de 8 digitos el ID";
+                }else{
+                    $temp_id = (int) $temp_id;
+                    $id = $temp_id;
+                }
+            }
+        }
+
+        //Validacion del titulo
+        if (!strlen($temp_titulo) > 0) {
+            $err_titulo = "El titulo es obligatorio";
+        } else {
+            if (strlen($temp_titulo) > 80) {
+                $err_titulo = "No puede contener mas de 80 caracteres";
+            } else {
+                $titulo = ucwords(strtolower($temp_titulo));
+            }
+        }
+        
+
+        //Validacion edad Recomendada
+        if (!strlen($temp_edadRecomendada) < 0) {
+            $err_edadRecomendada  = "La edad recomendada debe existir";
+        } else {
+            $edades_rec = ["0", "3", "7", "12", "16", "18"];
+            if(!in_array($temp_edadRecomendada, $edades_rec)){
+                $err_edadRecomendada = "La edad Recomendada no es valida.";
+            }else{
+                $edad_recomendada = $temp_edadRecomendada;
+            }
+        }
+
+        //Validacion Fecha
+        if (strlen($temp_fechaEstreno) == 0) {
+            $err_fechaEstreno = "La fecha de estreno es obligatoria";
+        } else {
+            list($anyo, $mes, $dia) = explode("-", $temp_fechaEstreno);
+            if ($anyo < 1895){
+                $err_fechaEstreno = "Aun no se habian inventado las peliculas";
+            }else{
+                $fechaEstreno = $temp_fechaEstreno;
+            }
+        }
+    }
     ?>
     <div class="container">
         <h1>Formulario de películas</h1>
-        <form action="" method="post">
-            <fieldset>
+        <div class="col-9">
+            <form action="" method="post">
                 <div class="mb-3">
                     <label class="form-label">ID Películas: </label>
                     <input type="text" name="idPeliculas" class="form-control">
@@ -90,6 +107,13 @@
                     } ?>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Fecha de estreno: </label>
+                    <input type="date" name="fechaEstreno" class="form-control">
+                    <?php if (isset($err_fechaEstreno)) {
+                        echo $err_fechaEstreno;
+                    } ?>
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Edad Recomendada: </label>
                     <select name="edadRecomenda" class="form-select">
                         <option disabled selected hidden>Seleccione una opcion</option>
@@ -100,27 +124,16 @@
                         <option value="16">+16</option>
                         <option value="18">+18</option>
                     </select>
-                    <?php if (isset($err_apellidos)) {
-                        echo $err_apellidos;
-                    } ?>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha de estreno: </label>
-                    <input type="date" name="fechaEstreno" class="form-control">
-                    <?php if (isset($err_fechaNacimiento)) {
-                        echo $err_fechaNacimiento;
+                    <?php if (isset($err_edadRecomendada)) {
+                        echo $err_edadRecomendada;
                     } ?>
                 </div>
                 <input type="submit" value="Registrarse" class="btn btn-primary btn-sm">
-            </fieldset>
-        </form>
+            </form>
+        </div>
         <?php
-        if (isset($usuario) && isset($nombre) && isset($apellidos) && isset($fecha_nacimiento)) {
-            echo "<h3>Usuario: $usuario</h3>";
-            echo "<h3>Nombre: $nombre</h3>";
-            echo "<h3>Apellidos: $apellidos</h3>";
-            echo "<h3>Fecha de nacimiento: $fecha_nacimiento</h3>";
-            $sql = "INSERT INTO usuarios (usuario, nombre, apellidos, fecha_nacimiento) VALUES ('$usuario', '$nombre', '$apellidos', '$fecha_nacimiento')";
+        if (isset($id) && isset($titulo) && isset($fechaEstreno) && isset($edad_recomendada)) {
+            $sql = "INSERT INTO peliculas VALUES ($id, '$titulo', '$fechaEstreno', '$edad_recomendada')";
 
             $conexion->query($sql);
         }
