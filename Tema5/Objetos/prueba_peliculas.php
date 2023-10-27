@@ -17,26 +17,32 @@
     $pelicula3 = new Pelicula(3, "Superman", "2025-01-01", "12");
     $peliculas = [$pelicula1, $pelicula2, $pelicula3];
     ?>
-    <table class = "table table-primary table-hover">
-        <thead class = "table table-dark">
-            <tr>
-                <th>Titulo</th>
-                <th>Fecha de estreno</th>
-                <th>Edad recomendada</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($peliculas as $pelicula) {
-                echo "<tr>";
-                echo "<td>" . $pelicula->titulo . "</td>";
-                echo "<td>" . $pelicula->fecha_estreno . "</td>";
-                echo "<td>" . $pelicula->edad_recomendada . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+    <div class = "container">
+        <div class="col-8">
+            <table class="table table-primary table-hover">
+                <thead class="table table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Fecha de estreno</th>
+                        <th>Edad recomendada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($peliculas as $pelicula) {
+                        echo "<tr>";
+                        echo "<td>" . $pelicula->id_pelicula . "</td>";
+                        echo "<td>" . $pelicula->titulo . "</td>";
+                        echo "<td>" . $pelicula->fecha_estreno . "</td>";
+                        echo "<td>" . $pelicula->edad_recomendada . "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
