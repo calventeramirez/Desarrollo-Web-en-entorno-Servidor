@@ -31,6 +31,9 @@
             $acceso_valido = password_verify($contrasena, $contrasena_cifrada);
             if ($acceso_valido) {
                 echo "Nos hemos validado con exito";
+                session_start();
+                $_SESSION['usuario'] = $usuario;
+                header("Location: principal.php");
             } else {
             ?>
                 <div class="alert alert-danger" role="alert">
