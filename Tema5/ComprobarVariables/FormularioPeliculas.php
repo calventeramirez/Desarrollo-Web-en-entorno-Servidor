@@ -34,6 +34,19 @@
         } else {
             $temp_fechaEstreno = "";
         }
+        
+        // $nombre_imagen = $_FILES["imagen"]["name"];
+        // $tipo_imagen = $_FILES["imagen"]["type"];
+        // $tamaño_imagen = $_FILES["imagen"]["size"];
+        // $ruta_temp = $_FILES["imagen"]["tmp_name"];
+        // echo $nombre_imagen;
+        // echo $tipo_imagen;
+        // echo $tamaño_imagen;
+        // echo $ruta_temp;
+        $nombre_imagen = $_FILES["imagen"]["name"];
+        $ruta_temp = $_FILES["imagen"]["tmp_name"];
+        $ruta_final = "img/".$nombre_imagen;
+        move_uploaded_file($ruta_temp, $ruta_final);
 
         //Validación del id
         if (strlen($temp_id) == 0) {
@@ -91,7 +104,7 @@
     <div class="container">
         <h1>Formulario de películas</h1>
         <div class="col-9">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">ID Películas: </label>
                     <input type="text" name="idPeliculas" class="form-control">
@@ -128,12 +141,17 @@
                         echo $err_edadRecomendada;
                     } ?>
                 </div>
-                <input type="submit" value="Registrarse" class="btn btn-primary btn-sm">
+                <div class = "mb-3">
+                    <label class="form-label">Imagen: </label>
+                    <input class = "form-control" type="file" name="imagen">
+                </div>
+                <input type="submit" value="Añadir Película" class="btn btn-primary btn-sm">
             </form>
         </div>
         <?php
         if (isset($id) && isset($titulo) && isset($fechaEstreno) && isset($edad_recomendada)) {
-            $sql = "INSERT INTO peliculas VALUES ($id, '$titulo', '$fechaEstreno', '$edad_recomendada')";
+            echo "<h3>Exito</h3>";
+            $sql = "INSERT INTO peliculas VALUES ($id, '$titulo', '$fechaEstreno', '$edad_recomendada', '$ruta_final')";
 
             $conexion->query($sql);
         }

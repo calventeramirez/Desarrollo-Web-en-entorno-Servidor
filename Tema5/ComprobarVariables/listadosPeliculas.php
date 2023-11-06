@@ -24,6 +24,7 @@
                         <th>Titulo</th>
                         <th>Fecha de Estreno</th>
                         <th>Edad Recomendada</th>
+                        <th>Imagen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,11 @@
                             echo "<td>".$row["titulo"]."</td>";
                             echo "<td>".$row["fecha_estreno"]."</td>";
                             echo "<td>".$row["edad_recomendada"]."</td>";
+                            echo "<td>";
+                            ?>
+                            <img src="<?php echo $row["imagen"] ?>" alt="" width = "50px" height="75px">
+                            <?php
+                            echo "</td>";
                             echo "</tr>";
                         }
                     ?>
