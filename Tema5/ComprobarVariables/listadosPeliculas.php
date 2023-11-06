@@ -37,7 +37,7 @@
                             echo "<td>".$row["edad_recomendada"]."</td>";
                             echo "<td>";
                             ?>
-                            <img src="<?php echo $row["imagen"] ?>" alt="" width = "50px" height="75px">
+                            <img src="<?php echo $row["imagen"] ?>" alt="" width = "30%" height="30%">
                             <?php
                             echo "</td>";
                             echo "</tr>";
