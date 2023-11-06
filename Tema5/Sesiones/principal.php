@@ -9,7 +9,13 @@
 <body>
     <?php
         session_start();
-        $usuario = $_SESSION['usuario'];
+        if(isset($_SESSION['usuario']))
+            $usuario = $_SESSION['usuario'];
+        else{
+            //header("Location: inicioSesion.php");
+            $_SESSION["usuario"] = "invitado";
+            $usuario = $_SESSION['usuario'];
+        }
     ?>
     <div class="container">
         <h1>Página principal</h1>
