@@ -9,28 +9,56 @@
 </head>
 <body>
     <?php
-        session_start();
-        $sql = $conexion -> prepare("SELECT * FROM videojuegos");
-        $sql -> execute();
-        $videojuegos = $sql -> get_result();
-        $conexion -> close();
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $sql = $conexion -> prepare("SELECT * FROM videojuegos");
+            $sql -> execute();
+            $videojuegos = $sql -> get_result();
+            $conexion -> close();
+        }
+        
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $filtro = $_POST["filtro"];
+            $tipoFiltro = $_POST["tipoFiltro"];
+            $tipoOrdenacion = $_POST["tipoOrdenacion"];
+            $tipoOrdenacion == "ascendente"? $tipoOrdenacion = "ASC": $tipoOrdenacion = "DESC";
+            
+            $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo LIKE CONCAT('%',?,'%') ORDER BY $tipoFiltro $tipoOrdenacion");
+            $sql -> bind_param("s", $filtro);
+            $sql -> execute();
+            $videojuegos = $sql -> get_result();
+            $conexion -> close();
+       }
     ?>
     <div class = "container">
     <h1>Listado de juegos</h1>
     <nav>
         <li><a href="create_videogame.php">Añadir juegos</a></li>
     </nav>
-        <form action = "search_videogame.php" method ="post">
+        <form action = "" method ="post">
             <div class = "row mb-2 mt-3">
                 <div class="col-6">
                     <input type="text" class = "form-control" name = "filtro">
-                    <select class ="form-select">
-                        <option selected >Titulo</option>
-                        <option>Distribuidora</option>
-                    </select>
                 </div>
                 <div class="col-2">
                 <button class="btn btn-primary">Filtrar</button>
+            </div>
+            <div class = "row mt-2">
+                <div class = "col-2">
+                    <label class="form-label">Filtros</p>
+                </div>
+                <div class = "col-4">
+                    <select class ="form-select" name ="tipoFiltro">
+                        <option selected value = "titulo">Titulo</option>
+                        <option value = "distribuidora">Distribuidora</option>
+                        <option value = "precio">Precio</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class ="form-select" name="tipoOrdenacion">
+                        <option selected value="ascendente">ASC</option>
+                        <option value = "descendente">DESC</option>
+                    </select>
+                </div>
             </div>
             </div>
         </form>

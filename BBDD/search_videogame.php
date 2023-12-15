@@ -10,9 +10,13 @@
 <body>
     <?php
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $titulo =$_POST["filtro"];
-            $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo LIKE CONCAT('%',?,'%')");
-            $sql -> bind_param("s", $titulo);
+            $filtro = $_POST["filtro"];
+            $tipoFiltro = $_POST["tipoFiltro"];
+            $tipoOrdenacion = $_POST["tipoOrdenacion"];
+            $tipoOrdenacion == "ascendente"? $tipoOrdenacion = "ASC": $tipoOrdenacion = "DESC";
+            
+            $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo LIKE CONCAT('%',?,'%') ORDER BY $tipoFiltro $tipoOrdenacion");
+            $sql -> bind_param("s", $filtro);
             $sql -> execute();
             $videojuegos = $sql -> get_result();
             $conexion -> close();
