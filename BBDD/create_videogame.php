@@ -22,6 +22,9 @@
     }
     ?>
     <div class = "container">
+    <nav>
+        <li><a href="index.php">Inicio</a></li>
+    </nav>
         <h1>Nuevo videojuego</h1>
         <form action="" method = "post">
             <div class="mb-3">

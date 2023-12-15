@@ -14,28 +14,27 @@
         $sql -> execute();
         $videojuegos = $sql -> get_result();
         $conexion -> close();
-
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            if(isset($_POST["filtro"])){
-                $_SESSION["filtro"] = $_POST["filtro"];
-                header("Location: search_videogame.php");
-            }
-        }
     ?>
     <div class = "container">
-        <form action = "" method ="post">
-            <div class = "mb-2 mt-3">
-                <input type="text" class = "form-control" name = "filtro">
-                <select class ="form-select">
-                    <option selected >Titulo</option>
-                    <option>Distribuidora</option>
-                </select>
+    <h1>Listado de juegos</h1>
+    <nav>
+        <li><a href="create_videogame.php">Añadir juegos</a></li>
+    </nav>
+        <form action = "search_videogame.php" method ="post">
+            <div class = "row mb-2 mt-3">
+                <div class="col-6">
+                    <input type="text" class = "form-control" name = "filtro">
+                    <select class ="form-select">
+                        <option selected >Titulo</option>
+                        <option>Distribuidora</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                <button class="btn btn-primary">Filtrar</button>
             </div>
-            <div class="mb-2">
-                <button class="btn btn-primary">Filtro</button>
             </div>
         </form>
-        <h1>Listado de juegos</h1>
+        
         <table class = "table table-hover">
             <thead class="table-dark">
                 <tr>

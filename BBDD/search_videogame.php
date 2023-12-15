@@ -9,17 +9,21 @@
 </head>
 <body>
     <?php
-        session_start();
-        $busqueda = $_SESSION["filtro"];
-        if(isset($busqueda)){
-            $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo = '$busqueda'");
+       if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $titulo =$_POST["filtro"];
+            $sql = $conexion -> prepare("SELECT * FROM videojuegos WHERE titulo LIKE CONCAT('%',?,'%')");
+            $sql -> bind_param("s", $titulo);
             $sql -> execute();
             $videojuegos = $sql -> get_result();
             $conexion -> close();
-        }
+       }
     ?>
     <div class = "container">
             <h1>Listado de juegos</h1>
+            <nav>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="create_videogame.php">Añadir juegos</a></li>
+            </nav>
             <table class = "table table-hover">
                 <thead class="table-dark">
                     <tr>
