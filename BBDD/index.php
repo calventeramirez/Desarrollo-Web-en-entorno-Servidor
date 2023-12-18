@@ -69,6 +69,8 @@
                     <th>Titutlo</th>
                     <th>Distribuidora</th>
                     <th>Precio</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,6 +80,22 @@
                         echo "<td>".$fila['titulo']."</td>";
                         echo "<td>".$fila['distribuidora']."</td>";
                         echo "<td>".$fila['precio']."</td>";
+                        echo "<td>";
+                        ?>
+                        <form action = "view_videogame.php" method = "get">
+                            <input type = "hidden" name ="titulo" value="<?php echo $fila["titulo"]?>" >
+                            <input class = "btn btn-secondary" type = "submit" value = "ver">
+                        </form>
+                        <?php
+                        echo "</td>";
+                        echo "<td>";
+                        ?>
+                        <form action = "delete_videogame.php" method = "POST">
+                        <input type = "hidden" name ="titulo" value="<?php echo $fila["titulo"]?>" >
+                            <input class = "btn btn-danger" type = "submit" value = "Eliminar">
+                        </form>
+                        <?php
+                        echo "</td>";
                         echo "</tr>";
                     }
                 ?>
