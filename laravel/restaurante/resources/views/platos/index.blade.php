@@ -18,13 +18,37 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($platos as $plato)
+            @foreach($platos as $plato)
+                {{-- aqui html sin mas --}}
                 <tr>
-                    <td>{{ $plato[0] }}</td>
-                    <td>{{ $plato[1] }}</td>
-                    <td>{{ $plato[2] }}</td>
+                    <td> {{ $plato -> nombre }}</td>
+                    <td> {{ $plato -> precio }}</td>
+                    <td> {{ $plato -> tipo_plato -> tipo}}</td>
+                    <td>
+                        <form action="{{ route('platos.show', ['plato'=>$plato->id])}}" 
+                        method="get">
+                            <input type="submit" value="Ver">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('platos.edit', ['plato'=>$plato->id])}}"
+                            method="get">
+                            <input type="submit" value="Editar">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('platos.destroy', ['plato'=>$plato->id])}}"
+                            method="post">
+                            {{-- Laravel no deja completar un formulario con post
+                                sin poner esto --}}
+                            @csrf
+                            {{ method_field('DELETE')}}
+                            <input type="submit" value="Borrar">
+                        </form>
+                    </td>
                 </tr>
-            @endforeach
+                @endforeach   
+
         </tbody>
     </table>
 </body>
