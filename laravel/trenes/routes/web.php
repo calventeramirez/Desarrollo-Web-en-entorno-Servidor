@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("/ticket", TicketController::class);
-Route::resource("/tipoticket", TicketTypeController::class);
-Route::resource("/tren", TrainController::class);
-Route::resource("/tipotren", TrainTypeController::class);
+Route::resource("/tickets", TicketController::class);
+Route::resource("/ticketstype", TicketTypeController::class);
+Route::resource("/trains", TrainController::class);
+Route::resource("/trainstype", TrainTypeController::class);

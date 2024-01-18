@@ -14,7 +14,7 @@ class TrainController extends Controller
     {
         $trenes = Train::all(); 
 
-        return view("/trenes/index", ["trenes" => $trenes]);
+        return view("/trains/index", ["trenes" => $trenes]);
     }
 
     /**
@@ -22,7 +22,7 @@ class TrainController extends Controller
      */
     public function create()
     {
-        //
+        return view("/trains/create");
     }
 
     /**
@@ -30,7 +30,14 @@ class TrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trenes = new Train;
+        $trenes -> name = $request -> input('name');
+        $trenes -> passengers = $request -> input('passengers');
+        $trenes -> year = $request -> input('year');
+        $trenes -> train_type_id = $request -> input('train_type_id');
+        $trenes -> save();
+
+        return redirect('trains');
     }
 
     /**
@@ -38,7 +45,9 @@ class TrainController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $trenes = Train::find($id);
+        
+        return view('trains/show', ['trenes'=>$trenes]);
     }
 
     /**
@@ -46,7 +55,8 @@ class TrainController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $trenes = Train::find($id);
+        return view('trains/edit', ['trenes'=>$trenes]);
     }
 
     /**
@@ -54,7 +64,15 @@ class TrainController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $trenes = Train::find($id);
+        
+        $trenes -> name = $request -> input('name');
+        $trenes -> passengers = $request -> input('passengers');
+        $trenes -> year = $request -> input('year');
+        $trenes -> train_type_id = $request -> input('train_type_id');
+        $trenes -> save();
+
+        return redirect('trains');
     }
 
     /**
@@ -62,6 +80,7 @@ class TrainController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('trains')->where('id',"=",$id)->delete();
+        return redirect('/trains');
     }
 }
