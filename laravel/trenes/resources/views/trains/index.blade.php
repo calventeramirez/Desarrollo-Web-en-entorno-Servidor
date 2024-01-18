@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             
-            @foreach ($trenes as $tren)
+            @foreach ($train as $tren)
                 <tr>
                     <td>{{ $tren -> name }}</td>
                     <td>{{ $tren -> passengers }}</td>
@@ -30,19 +30,19 @@
                     <td>{{ $tren -> train_type_id }}</td>
                     <td>
                         <form method="get" 
-                        action="{{ route('trains.show', ['trenes'=>$tren->id])}}">
-                            <input class="btn btn-secondary" type="submit" value="Mostrar">
+                        action="{{ route('trains.show', ['train'=>$tren->id])}}">
+                            <input class="btn btn-primary" type="submit" value="Mostrar">
                         </form>
                     </td>
                     <td>
                         <form method="get" 
-                        action="{{ route('trains.edit', ['trenes'=>$tren->id])}}">
-                            <input class="btn btn-success" type="submit" value="Editar">
+                        action="{{ route('trains.edit', ['train'=>$tren->id])}}">
+                            <input class="btn btn-warning" type="submit" value="Editar">
                         </form>
                     </td>
                     <td>
                         <form method="post" 
-                        action="{{ route('trains.destroy', ['trenes'=>$tren->id])}}">
+                        action="{{ route('trains.destroy', ['train'=>$tren->id])}}">
                             @csrf
                             {{ method_field('DELETE') }}
                             <input class="btn btn-danger" type="submit" value="Borrar">
@@ -52,6 +52,11 @@
             @endforeach
         </tbody>
     </table>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('trains.create') }}">
+            <button class="btn btn-success">Crear tren</button>
+        </a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

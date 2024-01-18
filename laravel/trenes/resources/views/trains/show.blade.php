@@ -11,12 +11,25 @@
     <br>
     <div class="container">
         <h2>Ver Trenes</h2>
-        <p>Nombre: {{ $trenes -> name }}</p>
-        <p>Pasajeros: {{ $trenes -> passengers }}</p>
-        <p>Año: {{ $trenes -> year }}</p>
-        <p>Tipo: {{ $trenes -> train_type_id}}</p>
+        <table class="table table-primary table-hover">
+            <thead class="table table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Pasajeros</th>
+                    <th>Año</th>
+                    <th>Tipo de tren</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $train -> name }}</td>
+                    <td>{{ $train -> passengers }}</td>
+                    <td>{{ $train -> year }}</td>
+                    <td>{{ $train -> train_type_id }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

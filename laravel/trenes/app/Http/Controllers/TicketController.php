@@ -14,7 +14,7 @@ class TicketController extends Controller
     {
         $tickets = Ticket::all(); 
 
-        return view("/ticket/index", ["tickets" => $tickets]);
+        return view("/tickets/index", ["tickets" => $tickets]);
     }
 
     /**

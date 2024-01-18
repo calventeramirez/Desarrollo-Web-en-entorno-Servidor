@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Train;
+use DB;
 
 class TrainController extends Controller
 {
@@ -12,9 +13,9 @@ class TrainController extends Controller
      */
     public function index()
     {
-        $trenes = Train::all(); 
+        $trains = Train::all(); 
 
-        return view("/trains/index", ["trenes" => $trenes]);
+        return view("/trains/index", ["train" => $trains]);
     }
 
     /**
@@ -30,12 +31,12 @@ class TrainController extends Controller
      */
     public function store(Request $request)
     {
-        $trenes = new Train;
-        $trenes -> name = $request -> input('name');
-        $trenes -> passengers = $request -> input('passengers');
-        $trenes -> year = $request -> input('year');
-        $trenes -> train_type_id = $request -> input('train_type_id');
-        $trenes -> save();
+        $train = new Train;
+        $train -> name = $request -> input('name');
+        $train -> passengers = $request -> input('passengers');
+        $train -> year = $request -> input('year');
+        $train -> train_type_id = $request -> input('train_type_id');
+        $train -> save();
 
         return redirect('trains');
     }
@@ -45,9 +46,9 @@ class TrainController extends Controller
      */
     public function show(string $id)
     {
-        $trenes = Train::find($id);
+        $train = Train::find($id);
         
-        return view('trains/show', ['trenes'=>$trenes]);
+        return view('trains/show', ['train'=> $train]);
     }
 
     /**
@@ -55,8 +56,8 @@ class TrainController extends Controller
      */
     public function edit(string $id)
     {
-        $trenes = Train::find($id);
-        return view('trains/edit', ['trenes'=>$trenes]);
+        $train = Train::find($id);
+        return view('trains/edit', ['train'=>$train]);
     }
 
     /**
@@ -64,13 +65,13 @@ class TrainController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $trenes = Train::find($id);
+        $train = Train::find($id);
         
-        $trenes -> name = $request -> input('name');
-        $trenes -> passengers = $request -> input('passengers');
-        $trenes -> year = $request -> input('year');
-        $trenes -> train_type_id = $request -> input('train_type_id');
-        $trenes -> save();
+        $train -> name = $request -> input('name');
+        $train -> passengers = $request -> input('passengers');
+        $train -> year = $request -> input('year');
+        $train -> train_type_id = $request -> input('train_type_id');
+        $train -> save();
 
         return redirect('trains');
     }
