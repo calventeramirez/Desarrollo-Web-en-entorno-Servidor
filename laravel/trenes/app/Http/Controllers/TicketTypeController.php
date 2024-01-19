@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TicketType;
+use DB;
 
 class TicketTypeController extends Controller
 {
@@ -12,9 +13,9 @@ class TicketTypeController extends Controller
      */
     public function index()
     {
-        $tipostickets = TicketType::all(); 
+        $ticketstype = TicketType::all(); 
 
-        return view("/tipoticket/index", ["tipostickets" => $tipostickets]);
+        return view("/ticketstype/index", ["ticketstype" => $ticketstype]);
     }
 
     /**
@@ -22,7 +23,7 @@ class TicketTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view("/ticketstype/create");
     }
 
     /**
@@ -30,7 +31,11 @@ class TicketTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticketstype = new TicketType;
+        $ticketstype -> type = $request -> input('type');
+        $ticketstype -> save();
+
+        return redirect('ticketstype');
     }
 
     /**
@@ -38,7 +43,9 @@ class TicketTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticketstype = TicketType::find($id);
+        
+        return view('ticketstype/show', ['ticketstype'=> $ticketstype]);
     }
 
     /**
@@ -46,7 +53,8 @@ class TicketTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ticketstype = TicketType::find($id);
+        return view('ticketstype/edit', ['ticketstype'=>$ticketstype]);
     }
 
     /**
@@ -54,7 +62,11 @@ class TicketTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ticketstype = TicketType::find($id);
+        $ticketstype -> type = $request -> input('type');
+        $ticketstype -> save();
+
+        return redirect('ticketstype');
     }
 
     /**
@@ -62,6 +74,7 @@ class TicketTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('ticket_types')->where('id',"=",$id)->delete();
+        return redirect('/ticketstype');
     }
 }

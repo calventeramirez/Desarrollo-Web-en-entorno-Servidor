@@ -14,9 +14,9 @@ class TrainTypeController extends Controller
      */
     public function index()
     {
-        $tipotrenes = TrainType::all(); 
+        $trainstype = TrainType::all(); 
 
-        return view("/tipotrenes/index", ["tipotrenes" => $tipotrenes]);
+        return view("/trainstype/index", ["trainstype" => $trainstype]);
     }
 
     /**
@@ -24,7 +24,7 @@ class TrainTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view("/trainstype/create");
     }
 
     /**
@@ -32,7 +32,11 @@ class TrainTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trainstype = new TrainType;
+        $trainstype -> type = $request -> input('type');
+        $trainstype -> save();
+
+        return redirect('trainstype');
     }
 
     /**
@@ -40,7 +44,9 @@ class TrainTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $trainstype = TrainType::find($id);
+        
+        return view('trainstype/show', ['trainstype'=> $trainstype]);
     }
 
     /**
@@ -48,7 +54,8 @@ class TrainTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $trainstype = TrainType::find($id);
+        return view('trainstype/edit', ['trainstype'=>$trainstype]);
     }
 
     /**
@@ -56,7 +63,11 @@ class TrainTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $trainstype = TrainType::find($id);
+        $trainstype -> type = $request -> input('type');
+        $trainstype -> save();
+
+        return redirect('trainstype');
     }
 
     /**
@@ -64,6 +75,7 @@ class TrainTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('train_types')->where('id',"=",$id)->delete();
+        return redirect('/trainstype');
     }
 }
