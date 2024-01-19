@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TrainType extends Model
 {
     use HasFactory;
-    public function tren(){
+    public function trains(){
         return $this->hasMany(Train::class);
     }
+
+   
 }

@@ -9,7 +9,7 @@ class Train extends Model
 {
     use HasFactory;
 
-    public function tipo_tren(){
+    public function train_type(){
         return $this->belongsTo(TrainType::class);
     }
 }

@@ -10,6 +10,26 @@
 </head>
 <body>
     <h1>Indice Trenes</h1>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('trains.index') }}">
+            <button class="btn btn-success">Ir a trenes</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('trainstype.index') }}">
+            <button class="btn btn-success">Ir a tipo de trenes</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('tickets.index') }}">
+            <button class="btn btn-success">Ir a tickets</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('ticketstype.index') }}">
+            <button class="btn btn-success">Ir a tipo de tickets</button>
+        </a>
+    </div>
     <table class="table table-primary table-hover">
         <thead class="table table-dark">
             <tr>
@@ -27,7 +47,7 @@
                     <td>{{ $tren -> name }}</td>
                     <td>{{ $tren -> passengers }}</td>
                     <td>{{ $tren -> year }}</td>
-                    <td>{{ $tren -> train_type_id }}</td>
+                    <td>{{ $tren -> train_type -> type }}</td>
                     <td>
                         <form method="get" 
                         action="{{ route('trains.show', ['train'=>$tren->id])}}">

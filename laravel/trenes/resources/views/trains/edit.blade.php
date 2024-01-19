@@ -10,6 +10,11 @@
 <body>
     <br>
     <div class="container">
+        <div class="mt-2 mb-2">
+            <a href="{{ route('trains.index') }}">
+                <button class="btn btn-success">Ir a trenes</button>
+            </a>
+        </div>
         <br>
         <h2>Editar Trenes</h2><br>
         <form method="post" action="{{route('trains.update', ['train'=>$train->id])}}"> 

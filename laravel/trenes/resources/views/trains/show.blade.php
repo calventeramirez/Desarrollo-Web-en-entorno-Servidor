@@ -10,6 +10,11 @@
 <body>
     <br>
     <div class="container">
+        <div class="mt-2 mb-2">
+            <a href="{{ route('trains.index') }}">
+                <button class="btn btn-success">Ir a trenes</button>
+            </a>
+        </div>
         <h2>Ver Trenes</h2>
         <table class="table table-primary table-hover">
             <thead class="table table-dark">

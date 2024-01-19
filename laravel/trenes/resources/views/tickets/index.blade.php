@@ -9,6 +9,26 @@
 </head>
 <body>
     <h1>Indice Ticket</h1>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('trains.index') }}">
+            <button class="btn btn-success">Ir a trenes</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('trainstype.index') }}">
+            <button class="btn btn-success">Ir a tipo de trenes</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('tickets.index') }}">
+            <button class="btn btn-success">Ir a tickets</button>
+        </a>
+    </div>
+    <div class="mt-2 mb-2">
+        <a href="{{ route('ticketstype.index') }}">
+            <button class="btn btn-success">Ir a tipo de tickets</button>
+        </a>
+    </div>
     <table class="table table-primary table-hover">
         <thead class="table table-dark">
             <tr>
@@ -54,7 +74,7 @@
     </table>
     <div class="mt-2 mb-2">
         <a href="{{ route('tickets.create') }}">
-            <button class="btn btn-success">Crear ticket</button>
+            <button class="btn btn-success">Crear tickets</button>
         </a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
