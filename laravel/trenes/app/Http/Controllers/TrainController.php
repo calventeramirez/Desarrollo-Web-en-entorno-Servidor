@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Train;
 use DB;
+use App\Models\TrainType;
 
 class TrainController extends Controller
 {
@@ -23,7 +24,10 @@ class TrainController extends Controller
      */
     public function create()
     {
-        return view("/trains/create");
+
+        $typeTrains = TrainType::all();
+
+        return view("/trains/create", ["typeTrains" => $typeTrains]);
     }
 
     /**
@@ -57,7 +61,8 @@ class TrainController extends Controller
     public function edit(string $id)
     {
         $train = Train::find($id);
-        return view('trains/edit', ['train'=>$train]);
+        $typeTrains = TrainType::all();
+        return view('trains/edit', ['train'=>$train], ["typeTrains" => $typeTrains]);
     }
 
     /**

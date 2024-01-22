@@ -28,9 +28,9 @@
             <input type="number" class="form-control" step="1" name="year" value="{{ $train->year }}">
             <label class="form-label">Tipo: </label>
             <select name="train_type_id" class="form-select">
-                <option value="1">Cercanías</option>
-                <option value="2">Media Distancia</option>
-                <option value="3">Alta Velocidad</option>
+                @foreach ($typeTrains as $type)
+                    <option value = "{{$type -> id}}">{{ $type -> type }}</option>
+                @endforeach
             </select>
             <input class="btn btn-success" type="submit" value="Editar">
         </form>

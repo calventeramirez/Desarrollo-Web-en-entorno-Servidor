@@ -23,9 +23,9 @@
         <input type="number" step="1" name="year">
         <label>Tipo: </label>
         <select name="train_type_id">
-            <option value="1">Cercanías</option>
-            <option value="2">Media Distancia</option>
-            <option value="3">Alta Velocidad</option>
+            @foreach ($typeTrains as $type)
+                <option value = "{{$type -> id}}">{{ $type -> type }}</option>
+            @endforeach
         </select>
         <br><br>
         <input type="submit" value="Crear">
