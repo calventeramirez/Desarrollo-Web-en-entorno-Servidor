@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Actor;
-use App\Http\Controllers\Film;
+use App\Http\Controllers\ActorController;
+use App\Http\Controllers\FilmController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +17,7 @@ use App\Http\Controllers\Film;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource("/films", FilmController::class);
+
+Route::resource("/actors", ActorController::class);
