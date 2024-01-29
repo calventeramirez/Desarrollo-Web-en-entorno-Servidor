@@ -15,11 +15,11 @@
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $respuesta = curl_exec($curl);
         $array = json_decode($respuesta, true);
-        $animes = $array["data"];
+        $anime = $array["data"];
     ?>
-    <h1><?php echo $animes["titles"][0]["title"] ?></h1>
-    <p><?php echo $animes["score"] ?></p>
-    <p><?php echo $animes["synopsis"] ?></p>
-    <img src="<?php echo $animes["images"]["jpg"]["image_url"] ?>">
+    <h1><?php echo $anime["titles"][0]["title"] ?></h1>
+    <p><?php echo $anime["score"] ?></p>
+    <p><?php echo $anime["synopsis"] ?></p>
+    <img src="<?php echo $anime["images"]["jpg"]["image_url"] ?>">
 </body>
 </html>
