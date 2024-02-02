@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\FilmResource;
 use App\Models\Film;
+use App\Http\Resources\ActorResource;
+use App\Models\Actor;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +19,11 @@ use App\Models\Film;
 Route::get("/films", function(){
     return FilmResource::collection(Film::all());
 });
+
+Route::get("/actors", function(){
+    return ActorResource::collection(Actor::all());
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
