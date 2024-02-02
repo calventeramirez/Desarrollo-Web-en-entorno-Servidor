@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\ActorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource("/films",FilmController::class);
+Route::resource("/actors",ActorController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
