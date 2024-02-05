@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var leagues = [
         "Liga EA SPORT", 
-        "Premiere League",
+        "Premier League",
         "Bundesliga",
         "Ligue 1",
         "Serie A"
