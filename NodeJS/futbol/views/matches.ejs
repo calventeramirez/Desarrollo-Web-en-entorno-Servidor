@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo local</th>
+                <th>Goles locales</th>
+                <th>Goles Visitantes</th>
+                <th>Equipo Visitante</th>
+            </tr>
+        </thead>
+            <tbody>
+                
+                    <% for(let i = 0; i < matches.length; i++){%>
+                        <tr>
+                          <%  for(let j = 0; j < matches[i].length; j++){
+                    %>
+                            <td><%= matches[i][j] %></td>
+                    <%  } %>
+                        </tr>
+                    <%}%>
+            </tbody>
+        </table>
+  </body>
+</html>
