@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var leagues = [
-        "Liga EA SPORT", 
+        "Liga EA SPORTS", 
         "Premier League",
         "Bundesliga",
         "Ligue 1",
