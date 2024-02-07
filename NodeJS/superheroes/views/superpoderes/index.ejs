@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Superheroe</th>
+                <th>Superpoder</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < superpoderes.length; i++){ %>
+                <tr>
+                    <td><%= superpoderes[i].superheroe %></td>
+                    <td><%= superpoderes[i].superpoder %></td>
+                </tr>
+            <%}%>
+        </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+1o Creamos carpeta
+mkdir {carpeta}
+
+2o Entramos en el directorio
+
+3o Creamos el proyecto de expressy ejs
+npx express-generator --view=ejs
+
+4o Instalamos la dependencia y auditamos los errores
+npm install
+npm audit fix --force
+
+5o Iniciamos el proyecto
+npm start
